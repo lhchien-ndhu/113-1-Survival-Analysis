@@ -1,0 +1,38 @@
+---
+title: "作業1"
+author: "簡立欣 12345"
+date: "2024-09-11"
+output: html_document
+---
+
+1. 從 1 加到 100 等於多少?
+
+```{r}
+sum(1:100)
+
+```
+
+從1加到 100 等於5050。
+
+# 1. 從 1 加到 100 等於多少?
+
+## 1. 從 1 加到 100 等於多少?
+
+### 1. 從 1 加到 100 等於多少?
+
+## 2. Generate $x_i \sim N(0,1), i=1,\cdots ,n=100$. Find the sample mean and the standard deviation.
+
+```{r}
+set.seed(123)
+x <- rnorm(100)
+mean(x)
+sd(x)
+
+```
+
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i = 0.09$$
+
+$$\hat{\sigma}^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2 $$
+$$ \hat{\sigma} = 0.91$$
+
+$$ \hat{\sigma} = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2} =  0.91$$
