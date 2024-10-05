@@ -3,15 +3,15 @@ Ch4-1 estimation of right censored data
 Li-Hsin Chien
 2024-10-04
 
-- [1 Kaplan-Meier(KM) estimator:
-  $\hat{S}(t)$](#1-kaplan-meierkm-estimator-hatst)
+- [1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$,
+  $\alpha$](#1-kaplan-meierkm-estimator-hatst-alpha)
 - [2 Pointwise confidence intervals for
   $\hat{S}(t)$](#2-pointwise-confidence-intervals-for-hatst)
 - [3 Prediction](#3-prediction)
 - [4 Nelson-Aalen estimator (估計 cumulative hazard
   function)](#4-nelson-aalen-estimator-估計-cumulative-hazard-function)
 
-# 1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$
+# 1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$, $\alpha$
 
 KM estimator $\hat{S}(t)$ 用無母數的方式估計存活函數 $S(t)$。
 
@@ -171,7 +171,7 @@ quantile(fit, probs=1-.5) # median survival rate, x: S(x)=.5
     ## 50 
     ## NA
 
-給定時間 10，預測 survival rate ($\hat{S}(10)$)
+給定時間 10，預測 survival rate ( \$ (10) \$ )
 
 ``` r
 t_index <- min(which(fit$time>=10))
