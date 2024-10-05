@@ -3,15 +3,15 @@ Ch4-1 estimation of right censored data
 Li-Hsin Chien
 2024-10-04
 
-- [1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$,
-  $\alpha$](#1-kaplan-meierkm-estimator-hatst-alpha)
+- [1 Kaplan-Meier(KM) estimator:
+  $\hat{S}(t)$](#1-kaplan-meierkm-estimator-hatst)
 - [2 Pointwise confidence intervals for
   $\hat{S}(t)$](#2-pointwise-confidence-intervals-for-hatst)
 - [3 Prediction](#3-prediction)
 - [4 Nelson-Aalen estimator (估計 cumulative hazard
   function)](#4-nelson-aalen-estimator-估計-cumulative-hazard-function)
 
-# 1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$, $\alpha$
+# 1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$
 
 KM estimator $\hat{S}(t)$ 用無母數的方式估計存活函數 $S(t)$。
 
@@ -113,13 +113,13 @@ plot(sfun.ci2,add=T,lty=2,vertical=F,cex=.5,col="gray")
 
 `conf.type` 可以選擇信賴區間種類:
 
-\*“plain”: no transformation
+- “plain”: no transformation
 
-\*“log” (default): $\log(S(t))=-H(t)$
+- “log” (default): $\log(S(t))=-H(t)$
 
-\*“log-log”: $\log (-\log (S(t)))$, range $=(\infty,\infty)$
+- “log-log”: $\log (-\log (S(t)))$, range $=(\infty,\infty)$
 
-\*“arcsin”
+- “arcsin”
 
 ``` r
 fit.plain <- survfit(Surv(t2,relapse)~1, data=drug6mp,conf.type="plain")
