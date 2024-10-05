@@ -171,7 +171,7 @@ quantile(fit, probs=1-.5) # median survival rate, x: S(x)=.5
     ## 50 
     ## NA
 
-給定時間 10，預測 survival rate ( \$ (10) \$ )
+給定時間 10，預測 survival rate ( $\hat{S}(10)$ )
 
 ``` r
 t_index <- min(which(fit$time>=10))
