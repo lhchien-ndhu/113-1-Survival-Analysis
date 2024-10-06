@@ -3,15 +3,13 @@ Ch4-1 estimation of right censored data
 Li-Hsin Chien
 2024-10-04
 
-- [1 Kaplan-Meier(KM) estimator:
-  $\hat{S}(t)$](#1-kaplan-meierkm-estimator-hatst)
-- [2 Pointwise confidence intervals for
-  $\hat{S}(t)$](#2-pointwise-confidence-intervals-for-hatst)
+- [1 Kaplan-Meier(KM) estimator](#1-kaplan-meierkm-estimator)
+- [2 Pointwise confidence intervals](#2-pointwise-confidence-intervals)
 - [3 Prediction](#3-prediction)
 - [4 Nelson-Aalen estimator (估計 cumulative hazard
   function)](#4-nelson-aalen-estimator-估計-cumulative-hazard-function)
 
-# 1 Kaplan-Meier(KM) estimator: $\hat{S}(t)$
+# 1 Kaplan-Meier(KM) estimator
 
 KM estimator $\hat{S}(t)$ 用無母數的方式估計存活函數 $S(t)$。
 
@@ -109,7 +107,7 @@ plot(sfun.ci2,add=T,lty=2,vertical=F,cex=.5,col="gray")
 
 ![](ch4-2_KM_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-# 2 Pointwise confidence intervals for $\hat{S}(t)$
+# 2 Pointwise confidence intervals
 
 `conf.type` 可以選擇信賴區間種類:
 
