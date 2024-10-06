@@ -181,6 +181,15 @@ fit$surv[t_index]
     ## [1] 0.7529412
 
 ``` r
+summary(fit,10)
+```
+
+    ## Call: survfit(formula = Surv(t2, relapse) ~ 1, data = drug6mp)
+    ## 
+    ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+    ##    10     15       5    0.753  0.0963        0.586        0.968
+
+``` r
 summary(fit)
 ```
 
