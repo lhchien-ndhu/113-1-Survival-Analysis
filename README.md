@@ -12,3 +12,7 @@ Rmarkdown demo: 資料夾 w1-Rmarkdown (test1.Rmd: 0911 上課 demo)
 
 ## 2024.09.28
 新增作業一解答: 0928-hw1_sol.pdf
+
+## 2024.10.16
+1. 上課 rcode (left-truncated data): 1016.r
+2. HW3
