@@ -52,3 +52,26 @@ plot(stepfun(c(80*12,r.m2$time[27:81])/12,c(1,r.m2$surv[26:81]/p.80),right=T),do
 abline(v=80,lty=2)
 
 legend(88,.95,c("gien survival to 68","given survival to 80"),lty=1:2)
+
+### female
+head(chan.f[order(chan.f$ageentry),])
+head(chan.f[order(-chan.f$death,chan.f$age),])
+
+r.f<-survfit(Surv(ageentry-.1,age,death)~1,data=chan.f)
+
+summary(r.f)
+summary(r.f,68*12-.1)
+p.68<-summary(r.f,68*12-.1)$surv #Pr(X>=68*12)
+summary(r.f,80*12-.1)
+p.80<-summary(r.f,80*12-.1)$surv #Pr(X>=80*12)
+
+
+?stepfun
+sum(r.f$time<68*12)
+plot(stepfun(c(r.f$time[-(1:3)]/12),c(1,r.f$surv[-(1:3)]/p.68),right=T),do.points=F,main="Survival curve-female",xlab="age",ylab="Estimated conditional survival prob.")
+abline(v=68,lty=2)
+sum(r.f$time<80*12)
+plot(stepfun(c(r.f$time[-(1:84)])/12,c(1,r.f$surv[-(1:84)]/p.80),right=T),do.points=F,lty=2,add=T)
+abline(v=80,lty=2)
+
+legend(88,.95,c("gien survival to 68","given survival to 80"),lty=1:2)
