@@ -1,0 +1,54 @@
+
+library(KMsurv)
+library(survival)
+
+data(channing)
+?channing
+
+attach(channing)
+
+head(channing)
+
+table(channing$gender)
+
+chan.m<-channing[channing$gender==1,] #male
+chan.f<-channing[channing$gender==2,] #female
+
+min(chan.m$ageentry)
+min(chan.f$ageentry)
+
+
+
+r.m<-survfit(Surv(ageentry-.1,age,death)~1,data=chan.m)
+#r.f<-survfit(Surv(ageentry-.1,age,death)~1,data=chan.f)
+
+summary(r.m)
+head(chan.m[order(chan.m$ageentry),])
+
+
+#Figure 4.10
+plot(r.m$time,r.m$n.risk,lty=2,col=1,type="l",xlim=c(700,1200),ylim=c(0,180),xlab="age in months",ylab="number at risk")
+points(r.f$time,r.f$n.risk,lty=2,col=2,type="l")
+legend(1100,150,c("male","female"),lty=1,col=1:2)
+
+
+#Figure 4.11
+summary(r.m)
+
+r.m2<-survfit(Surv(ageentry-.1,age,death)~1,data=chan.m[chan.m$ageentry>781,])
+
+781/12 # age in years
+
+summary(r.m2,68*12-.1)
+p.68<-summary(r.m2,68*12-.1)$surv #Pr(X>=68*12)
+summary(r.m2,80*12-.1)
+p.80<-summary(r.m2,80*12-.1)$surv #Pr(X>=80*12)
+
+
+?stepfun
+plot(stepfun(r.m2$time/12,c(1,r.m2$surv),right=T),do.points=F,main="Survival curve",xlab="age",ylab="Estimated conditional survival prob.")
+abline(v=68,lty=2)
+plot(stepfun(c(80*12,r.m2$time[27:81])/12,c(1,r.m2$surv[26:81]/p.80),right=T),do.points=F,lty=2,add=T)
+abline(v=80,lty=2)
+
+legend(88,.95,c("gien survival to 68","given survival to 80"),lty=1:2)
