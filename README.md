@@ -16,3 +16,6 @@ Rmarkdown demo: 資料夾 w1-Rmarkdown (test1.Rmd: 0911 上課 demo)
 ## 2024.10.16
 1. 上課 rcode (left-truncated data): 1016.r
 2. HW3: HW3-1016.pdf
+
+## 2024.10.23
+1. 介紹 left truncation right censored data 分析: 1023-left trunc 資料夾
