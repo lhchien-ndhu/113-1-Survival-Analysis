@@ -19,3 +19,6 @@ Rmarkdown demo: 資料夾 w1-Rmarkdown (test1.Rmd: 0911 上課 demo)
 
 ## 2024.10.23
 1. 介紹 left truncation right censored data 分析: 1023-left trunc 資料夾
+
+## 2024.10.30
+1. Cox model 估計: 1030-PHM
