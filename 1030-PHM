@@ -1,0 +1,38 @@
+
+library(KMsurv)
+library(survival)
+
+
+data(kidtran)
+?kidtran
+
+t<-kidtran$time
+d<-kidtran$delta
+
+z1<-ifelse(kidtran$gender==2,1,0)
+z2<-ifelse(kidtran$race==2,1,0)
+z3<-z1*z2
+
+r1<-coxph(Surv(t,d)~z1+z2+z3)
+r1
+summary(r1)
+
+# Proportional Hazard Model:
+# 4 groups: black female, black male, white female, white male
+# Baseline:
+# The relative risk (hazard ratio) for black male relative to white male:
+# The relative risk (hazard ratio) for black male relative to white female:
+
+# Wald test 
+b<-r1$coefficients
+stat_wald <- t(as.matrix(b))%*%solve(vcov(r1))%*%(as.matrix(b))
+1-pchisq(stat_wald, df=3)
+
+# Likelihood ratio
+LL_b<-r1$loglik
+?coxph.object
+r0 <- coxph(Surv(t,d)~1)
+summary(r0)
+
+stat_LR <- 2*(LL_b[2]-LL_b[1])
+1-pchisq(stat_LR, df=3)
