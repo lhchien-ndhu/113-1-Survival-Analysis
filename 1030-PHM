@@ -19,9 +19,11 @@ summary(r1)
 
 # Proportional Hazard Model:
 # 4 groups: black female, black male, white female, white male
-# Baseline:
+# Baseline: white male
 # The relative risk (hazard ratio) for black male relative to white male:
+# (0,1,0) vs (0,0,0): exp(b2)  = 0.91504
 # The relative risk (hazard ratio) for black male relative to white female:
+# (0,1,0) vs (1,0,0): exp(b2-b1) = 1.173158
 
 # Wald test 
 b<-r1$coefficients
