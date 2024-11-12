@@ -1,7 +1,7 @@
 # 113-1-Survival-Analysis
 
 ## 2024.11.12
-期中考題+解答
+期中考題+解答:1112-midexam_sol.pdf
 
 ## 2024.10.30
 1. Cox model 估計: 1030-PHM
