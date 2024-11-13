@@ -30,7 +30,7 @@ system.time(coxph(Surv(time,delta)~type,data=kidney,ties="breslow"))
 system.time(coxph(Surv(time,delta)~type,data=kidney,ties="exact"))
 
 ####################
-### Baseline hazard: basehaz
+### Baseline hazard: basehaz (reference group: mean)
 ###   produce cumulative hazard function, use the Breslow estimator
 #####################
 
@@ -48,9 +48,9 @@ basehaz(r)
 length(predict(r))
 dim(kidney)
 
-H0 <- basehaz(r) 
-LP <- predict(r, type="lp") 
-H0[, 1]*exp(LP[kidney$delta==1])
+#H0 <- basehaz(r) 
+#LP <- predict(r, type="lp") 
+#H0[, 1]*exp(LP[kidney$delta==1])
 
 head(kidney)
 
@@ -62,5 +62,18 @@ H0.data<-H0[match(kidney$time,H0[,2]),1]
 head(exp(-H0.data*exp(LP)))
 
 head(exp(-predict(r, type="expected")))
+
+##############
+## basehaz:
+##  centered = FALSE
+#############
+
+head(kidney)
+
+head(H0_2 <- basehaz(r,centered=FALSE) )
+head(predict(r, type="survival") )
+exp(-H0_2[2,1]*exp(r$coefficients*kidney[1,3]))
+
+head(predict(r, type="survival") )
 
 
