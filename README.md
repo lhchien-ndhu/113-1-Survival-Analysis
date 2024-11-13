@@ -1,5 +1,8 @@
 # 113-1-Survival-Analysis
 
+## 2024.11.13
+估計 baseline hazard; 資料有 ties 的估計: 1113-H0_ties.R 
+
 ## 2024.11.12
 期中考題+解答:1112-midexam_sol.pdf
 
