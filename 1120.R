@@ -2,6 +2,7 @@ library(survival)
 
 fit <- coxph(Surv(futime, fustat) ~ rx + age + ecog.ps + resid.ds, data=ovarian) 
 summary(fit)
+
 ## AIC Backward variable selection
 drop1(fit)
 step(fit)
@@ -41,6 +42,21 @@ fit
 fit1 <- coxph(Surv(futime, fustat) ~ ecog.ps+resid.ds, data=ovarian)
 anova(fit1,fit)
 
+# H0: beta_1 = beta_3 = beta_4 = 0
+#  Wald test
+coe_3<-as.matrix(coef(fit)[-2])
+var_3<-fit$var[-2,-2]
+stat.w3 <- t(coe_3)%*%solve(var_3)%*%(coe_3)
+pchisq(stat.w3,df=3,lower.tail=FALSE)
+
+#  LRT
+fit2<-coxph(Surv(futime, fustat) ~ age, data=ovarian)
+anova(fit2,fit)
+
 
 ## martingale residuals
 fit$residuals
+?coxph
+
+## mar = delta - cox-snell res
+res.cs<- fit$residuals - ovarian$fustat
