@@ -1,5 +1,10 @@
 # 113-1-Survival-Analysis
 
+## 2024.11.27
+log-rank test; code 來源: 
+An Introduction to Statistical Learning: with Applications in R (2nd), Chapter 11.
+https://www.statlearning.com/resources-second-edition
+
 ## 2024.11.20
 local test, residuals: 1120.R
 
