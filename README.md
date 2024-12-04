@@ -1,5 +1,12 @@
 # 113-1-Survival-Analysis
 
+## 2024.12.4
+shrikage method:
+1. ref:
+   https://glmnet.stanford.edu/articles/Coxnet.html
+   https://bookdown.org/staedler_n/highdimstats/survival-analysis.html#regularized-cox-regression
+
+
 ## 2024.11.27
 log-rank test; code 來源: 
 An Introduction to Statistical Learning: with Applications in R (2nd), Chapter 11.
