@@ -1,0 +1,57 @@
+rm(list=ls())
+
+library(glmnet)
+
+
+library(survival)
+
+
+data("CoxExample")
+CoxExample
+?CoxExample
+
+attach(CoxExample)
+
+####### glmnet ########################
+# x: matrix, p>1
+# y: For family="cox", preferably a Surv object from the survival package
+# family: "cox"
+# alpha: elasticnet mixing parameter, 1=lasso (default), 0=ridge, (0,1) elasticnet
+# lambda: A user supplied lambda sequence. penalty parameter 
+############################
+
+#Details on response for family="cox"
+# For Cox models, the response should preferably be a Surv object, 
+# created by the Surv() function in survival package. 
+# For right-censored data, this object should have type "right", 
+# and for (start, stop] data, it should have type "counting". 
+# To fit stratified Cox models, strata should be added to the response via 
+# the stratifySurv() function before passing the response to glmnet(). 
+# (For backward compatibility, right-censored data can also be passed as a 
+# two-column matrix with columns named 'time' and 'status'. 
+# The latter is a binary variable, with '1' indicating death, and '0' indicating 
+# right censored.)
+
+fit<-glmnet(x,y,family="cox")
+plot(fit,xvar="lambda")
+## s: value(s) of lambda, default is the entire equence 
+coef(fit,s=0.05)
+?coef.glmnet
+
+####### cv.glmnet ################################
+# type.measure: "deviance" = partial-likelihood in "cox"
+#  
+set.seed(1)
+cvfit <- cv.glmnet(x,y,family="cox",type.measure="deviance")
+plot(cvfit)
+
+cvfit <- cv.glmnet(x,y,family="cox",type.measure="C")
+plot(cvfit)
+
+cvfit$lambda.min
+cvfit$lambda.1se
+
+
+fit <- glmnet(x, y, family = "cox", lambda=cvfit$lambda.1se)
+predict(fit,newx=x[1:4,])
+coef(fit)
