@@ -3,9 +3,8 @@
 ## 2024.12.4
 shrikage method:
 1. ref:
-   https://glmnet.stanford.edu/articles/Coxnet.html
-   
-   https://bookdown.org/staedler_n/highdimstats/survival-analysis.html#regularized-cox-regression
+   * https://glmnet.stanford.edu/articles/Coxnet.html
+   * https://bookdown.org/staedler_n/highdimstats/survival-analysis.html#regularized-cox-regression
 
 
 ## 2024.11.27
