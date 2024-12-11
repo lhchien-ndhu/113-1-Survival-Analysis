@@ -4,9 +4,17 @@ library(rpart)
 require(survival)
 pfit <- rpart(Surv(pgtime, pgstat) ~ age + eet + g2 + grade +gleason + ploidy, data = stagec)
 print(pfit)
+plot(pfit, uniform = TRUE, branch = 0.4, compress = TRUE)
+text(pfit, use.n = TRUE)
+
+library(rpart.plot)
+rpart.plot(pfit,nn=T)
+
+
 printcp(pfit)
 
 pfit2 <- prune(pfit, cp = 0.016)
+
 par(mar = rep(0.2, 4))
 plot(pfit2, uniform = TRUE, branch = 0.4, compress = TRUE)
 text(pfit2, use.n = TRUE)
@@ -16,6 +24,8 @@ rpart.plot(pfit2,  nn = TRUE)
 
 temp <- snip.rpart(pfit2, 6)
 rpart.plot(temp,nn=T)
+temp$where
+
 km <- survfit(Surv(pgtime, pgstat) ~ temp$where, stagec)
 plot(km, lty = 1:4, mark.time = FALSE,
      xlab = "Years", ylab = "Progression")
