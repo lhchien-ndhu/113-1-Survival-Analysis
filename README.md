@@ -2,6 +2,7 @@
 
 ## 2024.12.18
 Random Survival Forest Rcode: 1218-random survival forest.R
+* code from: https://www.randomforestsrc.org/articles/survival.html
 
 ## 2024.12.4
 shrikage method:
