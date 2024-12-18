@@ -21,6 +21,9 @@ print(obj)
 
 get.cindex(obj$yvar[,1], obj$yvar[,2], obj$predicted.oob)
 
+# tree size
+plot(obj$err.rate) 
+
 # prediction
 newdata <- data.frame(lapply(1:ncol(obj$xvar),function(i){median(obj$xvar[,i])}))
 colnames(newdata) <- obj$xvar.names
