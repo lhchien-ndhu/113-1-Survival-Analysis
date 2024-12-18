@@ -1,5 +1,8 @@
 # 113-1-Survival-Analysis
 
+## 2024.12.18
+Random Survival Forest Rcode: 1218-random survival forest.R
+
 ## 2024.12.4
 shrikage method:
 1. ref:
