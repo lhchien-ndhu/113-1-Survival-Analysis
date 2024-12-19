@@ -1,5 +1,8 @@
 # 113-1-Survival-Analysis
 
+## 2024.12.19
+新增期末報告投影片範例: 113-1_Survival Analysis-Final ppt-templet.pdf
+
 ## 2024.12.18
 Random Survival Forest Rcode: 1218-random survival forest.R
 * code from: https://www.randomforestsrc.org/articles/survival.html
