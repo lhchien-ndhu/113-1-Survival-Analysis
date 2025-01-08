@@ -1,0 +1,119 @@
+---
+title: "HW3 Solution"
+author: "lhchien"
+date: "2025-01-09"
+output: html_document
+---
+
+#### *Consider the study of the effect of ploidy on the survival of patients with cancer of the tongue. Using the data on aneuploid tumors.*
+
+#### *(a) Estimate the survival function. Use the KM estimator.*
+
+讀入資料
+
+```{r, warning=F}
+#install.packages("KMsurv") #安裝套件
+library(KMsurv)
+data(tongue)
+```
+
+從中挑選出 aneuploid tumors 的病人
+
+```{r}
+tongue.1<-tongue[tongue$type==1,]
+```
+利用 *survfit* 指令得到 KM estimator
+
+```{r}
+library(survival)
+
+r.km<-survfit(Surv(time,delta)~1,data=tongue.1)
+summary(r.km)
+```
+
+根據 time 及 survival 欄位，可得到 survival function 的 KM estimator (S(t)) 為
+
+```{r,echo=F}
+r.t<-summary(r.km)$time #length(r.t)=27
+r.t1<-c(0,r.t)
+r.t2<-c(r.t,max(tongue.1$time))
+
+t.range<-paste(r.t1,"<=t<",r.t2,sep="")
+r.surv<-round(c(1,summary(r.km)$surv),digits=3)
+
+
+r.table<-data.frame(1:length(t.range),t.range,r.surv)
+colnames(r.table)<-c("index","time interval", "S(t)")
+knitr::kable(r.table,align="cc")
+
+```
+
+
+
+#### *(b) plot the estimated survival curve.*
+
+```{r}
+plot(r.km, xlab = "Time to death(in weeks)",ylab = "Survival fuction")
+```
+
+#### *(c) Estimate the survival function at 12 weeks and 60 weeks after transplant. Find the standard errors for your estimates.*
+
+```{r}
+#S(12)
+#round(summary(r.km)$surv[sum(summary(r.km)$time<=12)],digits=3)
+#round(summary(r.km)$std.err[sum(summary(r.km)$time<=12)],digits=3)
+summary(r.km,12)
+
+
+#S(60)
+#round(summary(r.km)$surv[sum(summary(r.km)$time<=60)],digits=3)
+#round(summary(r.km)$std.err[sum(summary(r.km)$time<=60)],digits=3)
+summary(r.km,60)
+
+
+```
+$\hat{S}(12) = 0.904$, standard error $se(\hat{S}(12)) = 0.041$  
+
+$\hat{S}(60) = 0.654$, standard error $se(\hat{S}(60)) = 0.066$  
+
+#### *(d)	Estimate the cumulative hazard function. Use the Nelson-Aalen estimator.*
+
+```{r}
+(r.cumhaz<-data.frame(r.km$time,r.km$n.risk,r.km$n.event,r.km$cumhaz)[r.km$n.event>0,])
+```
+
+根據 time 及 cumhaz 欄位，可得到 cumulative hazard function 的 Nelson-Aalen estimator ($\tilde{\Lambda}(t)$) 為
+
+```{r,echo=F}
+r.t<-summary(r.km)$time #length(r.t)=27
+r.t1<-c(0,r.t)
+r.t2<-c(r.t,max(tongue.1$time))
+
+t.range<-paste(r.t1,"<=t<",r.t2,sep="")
+r.cumhaz<-round(c(0,summary(r.km)$cumhaz),digits=3)
+
+
+r.table<-data.frame(1:length(t.range),t.range,r.cumhaz)
+colnames(r.table)<-c("index","time interval", "Lambda(t)")
+knitr::kable(r.table,align="cc")
+
+```
+
+#### *(e)	Estimate the cumulative hazard rate at 60 weeks and find the standard error. Estimate the survival rate at 60 weeks by using the cumulative hazard rate and compare to your estimate in (c).*
+
+```{r}
+(cumhaz.60<-summary(r.km,60)$cumhaz)
+summary(r.km,60)$std.chaz
+```
+
+cumulative hazard rate 估計值為 $\tilde{\Lambda}(60)=0.4178$, 估計值的 standard error 為 0.0992
+
+```{r}
+(s.60.na<-exp(-cumhaz.60))
+
+```
+
+
+$$ \tilde{S}(60)=exp\{-\tilde{\Lambda}(60)\}=0.6585$$
+使用 KM estimator 存活率估計值為 0.654，和利用 Nelson-Aalen 所得的存活率估計值 相近。
+
